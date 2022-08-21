@@ -1,0 +1,21 @@
+#Disable Directory Browsing
+Options -Indexes
+#URL System
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+<FilesMatch "composer.json|composer.lock">
+Order allow,deny
+Deny from all
+allow from 127.0.0.1
+</FilesMatch>
+<FilesMatch ".htaccess">
+Order allow,deny
+Deny from all
+allow from 127.0.0.1
+</FilesMatch>
+</IfModule>
